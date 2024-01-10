@@ -9,58 +9,70 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+
+    @State private var rates = [CurrencyARate]()
+    @State private var tableNo = ""
+    @State private var date = ""
 
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
+        NavigationStack {
+            HStack{
+                Spacer()
+                Text(date)
+                Spacer()
+                Text(tableNo)
+                Spacer()
+            }
+            .padding(.horizontal)
+            .font(.caption2)
+
+            List{
+                ForEach(rates) { rate in
                     NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
+                        DetailView(rate: rate)
                     } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-#if os(macOS)
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-#endif
-            .toolbar {
-#if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-#endif
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                        HStack {
+                            Text(rate.id ).font(.title).foregroundColor(.blue)
+                            Text(rate.currency ).font(.caption)
+                            Spacer()
+                            Text(String(format: "%.4f",rate.mid ))
+                                .font(.title)
+                                .foregroundColor(.teal)
+                        }
                     }
                 }
             }
-        } detail: {
-            Text("Select an item")
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
+            .task {
+                do {
+                    try await rates = getRates()
+                } catch {
+                    print(error.localizedDescription)
+                }
             }
+            .navigationTitle("NBP rates")
+        }
+
+    }
+
+    func getRates() async throws -> [CurrencyARate] {
+        guard let url = URL(string:"https://api.nbp.pl/api/exchangerates/tables/A")
+        else {
+            return []
+        }
+        let (data,_) = try await URLSession.shared.data(from: url)
+      //  print(String(data:data, encoding: .utf8))
+        let tables = try JSONDecoder().decode([NbpATable].self, from: data)
+        let response = tables.first
+        if let res = response {
+            date = res.effectiveDate
+            tableNo = res.no
+            return res.rates
+        } else {
+            return []
         }
     }
 }
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
 }

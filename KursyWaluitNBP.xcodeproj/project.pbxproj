@@ -12,6 +12,8 @@
 		764FC0752B4F05C4001FA364 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764FC0742B4F05C4001FA364 /* Item.swift */; };
 		764FC0772B4F05C6001FA364 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 764FC0762B4F05C6001FA364 /* Assets.xcassets */; };
 		764FC07B2B4F05C6001FA364 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 764FC07A2B4F05C6001FA364 /* Preview Assets.xcassets */; };
+		764FC0822B4F2A1F001FA364 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764FC0812B4F2A1F001FA364 /* DetailView.swift */; };
+		764FC0842B4F357E001FA364 /* Strin+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764FC0832B4F357E001FA364 /* Strin+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		764FC0762B4F05C6001FA364 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		764FC0782B4F05C6001FA364 /* KursyWaluitNBP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KursyWaluitNBP.entitlements; sourceTree = "<group>"; };
 		764FC07A2B4F05C6001FA364 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		764FC0812B4F2A1F001FA364 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		764FC0832B4F357E001FA364 /* Strin+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strin+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,10 +60,12 @@
 			children = (
 				764FC0702B4F05C4001FA364 /* KursyWaluitNBPApp.swift */,
 				764FC0722B4F05C4001FA364 /* ContentView.swift */,
+				764FC0812B4F2A1F001FA364 /* DetailView.swift */,
 				764FC0742B4F05C4001FA364 /* Item.swift */,
 				764FC0762B4F05C6001FA364 /* Assets.xcassets */,
 				764FC0782B4F05C6001FA364 /* KursyWaluitNBP.entitlements */,
 				764FC0792B4F05C6001FA364 /* Preview Content */,
+				764FC0832B4F357E001FA364 /* Strin+Extensions.swift */,
 			);
 			path = KursyWaluitNBP;
 			sourceTree = "<group>";
@@ -143,6 +149,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				764FC0732B4F05C4001FA364 /* ContentView.swift in Sources */,
+				764FC0822B4F2A1F001FA364 /* DetailView.swift in Sources */,
+				764FC0842B4F357E001FA364 /* Strin+Extensions.swift in Sources */,
 				764FC0752B4F05C4001FA364 /* Item.swift in Sources */,
 				764FC0712B4F05C4001FA364 /* KursyWaluitNBPApp.swift in Sources */,
 			);
