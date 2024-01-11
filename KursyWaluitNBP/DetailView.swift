@@ -95,7 +95,7 @@ struct DetailView: View {
     }
 
     func getRates() async throws -> [DetailARate] {
-        guard let url = URL(string:"https://api.nbp.pl/api/exchangerates/rates/A/\(rate.id)/last/550")
+        guard let url = URL(string:"https://api.nbp.pl/api/exchangerates/rates/A/\(rate.id)/last/255")
         else {
             return []
         }
