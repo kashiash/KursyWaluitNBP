@@ -102,7 +102,9 @@ struct DetailView: View {
         let (data,_) = try await URLSession.shared.data(from: url)
         print(String(data:data, encoding: .utf8))
         let res = try JSONDecoder().decode(DetailATable.self, from: data)
-        return res.rates
+
+
+        return res.rates.sorted { $0.effectiveDate > $1.effectiveDate }
 
     }
 }
